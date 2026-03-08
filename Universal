@@ -1,0 +1,37 @@
+game.StarterGui:SetCore("SendNotification", {
+	Title = "val";
+	Text = "val";
+	Duration = 5;
+})
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+    local Window = Library.CreateLib("val", "DarkTheme")
+ 
+    -- MAIN
+    local Main = Window:NewTab("val")
+    local MainSection = Main:NewSection("FPS universal")
+
+MainSection:NewButton("LegitBot", "Legit Aimbot", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/LegitBot/refs/heads/main/LegitBot"))()
+end)
+
+MainSection:NewButton("BlatantBot", "Blatant Aimbot", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/BlatantBot"))()
+end)
+
+local valSection = Main:NewSection("universal")
+
+valSection:NewButton("TCESP", "Team Check Esp", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/TCESP"))()
+end)
+
+valSection:NewButton("RevampedHBE", "A Revamp of an HBE script", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/RevampedHBE"))()
+end)
+
+    --Settings
+    local Settings = Window:NewTab("UI")
+    local SettingsSection = Settings:NewSection("UI")
+
+    SettingsSection:NewKeybind("Toggle", "Toggles the Gui", Enum.KeyCode.RightControl, function()
+        Library:ToggleUI()
+    end)
