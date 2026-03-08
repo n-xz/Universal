@@ -1,41 +1,82 @@
-game.StarterGui:SetCore("SendNotification", {
-	Title = "val";
-	Text = "val";
-	Duration = 5;
-})
+-- Task Manager
+local RunningTasks = {}
+local Unloaded = false
+
+local function RunScript(url)
+    if Unloaded then return end
+
+    local thread = task.spawn(function()
+        if not Unloaded then
+            loadstring(game:HttpGet(url))()
+        end
+    end)
+
+    table.insert(RunningTasks, thread)
+end
+
+-- UI Library
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-    local Window = Library.CreateLib("val", "DarkTheme")
- 
-    -- MAIN
-    local Main = Window:NewTab("val")
-    local MainSection = Main:NewSection("FPS universal")
+local Window = Library.CreateLib("val", "DarkTheme")
+
+-- MAIN TAB
+local Main = Window:NewTab("val")
+local MainSection = Main:NewSection("FPS universal")
 
 MainSection:NewButton("LegitBot", "Legit Aimbot", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/LegitBot/refs/heads/main/LegitBot"))()
+    RunScript("https://raw.githubusercontent.com/n-xz/LegitBot/refs/heads/main/LegitBot")
 end)
 
 MainSection:NewButton("BlatantBot", "Blatant Aimbot", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/BlatantBot"))()
+    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/BlatantBot")
 end)
 
+-- UNIVERSAL SECTION
 local valSection = Main:NewSection("universal")
 
 valSection:NewButton("TCESP", "Team Check Esp", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/TCESP"))()
+    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/TCESP")
 end)
 
 valSection:NewButton("RevampedHBE", "A Revamp of an HBE script", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/RevampedHBE"))()
+    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/RevampedHBE")
 end)
 
 valSection:NewButton("LegitHBE", "A Legit Revamp of an HBE script", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/LegitHBE"))()
+    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/LegitHBE")
 end)
 
-    --Settings
-    local Settings = Window:NewTab("UI")
-    local SettingsSection = Settings:NewSection("UI")
+-- UI TAB
+local Settings = Window:NewTab("UI")
+local SettingsSection = Settings:NewSection("UI")
 
-    SettingsSection:NewKeybind("Toggle", "Toggles the Gui", Enum.KeyCode.RightControl, function()
+SettingsSection:NewKeybind("Toggle", "Toggles the Gui", Enum.KeyCode.RightControl, function()
+    if not Unloaded then
         Library:ToggleUI()
-    end)
+    end
+end)
+
+SettingsSection:NewButton("Unload Script", "Stops everything and closes the UI", function()
+
+    Unloaded = true
+
+    -- Cancel running tasks
+    for _,thread in pairs(RunningTasks) do
+        pcall(function()
+            task.cancel(thread)
+        end)
+    end
+
+    -- Destroy GUI
+    for _,v in pairs(game.CoreGui:GetChildren()) do
+        if v.Name == "val" then
+            v:Destroy()
+        end
+    end
+
+    game.StarterGui:SetCore("SendNotification", {
+        Title = "val";
+        Text = "Script Unloaded";
+        Duration = 0.5;
+    })
+
+end)
