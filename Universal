@@ -28,6 +28,10 @@ valSection:NewButton("RevampedHBE", "A Revamp of an HBE script", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/RevampedHBE"))()
 end)
 
+valSection:NewButton("LegitHBE", "A Legit Revamp of an HBE script", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/LegitHBE"))()
+end)
+
     --Settings
     local Settings = Window:NewTab("UI")
     local SettingsSection = Settings:NewSection("UI")
