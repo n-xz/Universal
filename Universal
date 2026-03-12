@@ -6,7 +6,7 @@ Library:ToggleUI()
 
 -- MAIN TAB
 local Main = Window:NewTab("val")
-local MainSection = Main:NewSection("FPS universal")
+local MainSection = Main:NewSection("FPS vlx")
 
 MainSection:NewButton("LegitBot", "Legit Aimbot", function()
     RunScript("https://raw.githubusercontent.com/n-xz/LegitBot/refs/heads/main/LegitBot")
@@ -17,7 +17,7 @@ MainSection:NewButton("BlatantBot", "Blatant Aimbot", function()
 end)
 
 -- UNIVERSAL SECTION
-local valSection = Main:NewSection("universal")
+local valSection = Main:NewSection("vlx")
 
 valSection:NewButton("TCESP", "Team Check Esp", function()
     RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/TCESP")
@@ -33,7 +33,7 @@ end)
 
 -- UI TAB
 local Settings = Window:NewTab("UI")
-local SettingsSection = Settings:NewSection("UI")
+local SettingsSection = Settings:NewSection("vui")
 
 SettingsSection:NewKeybind("Toggle", "Toggles the Gui", Enum.KeyCode.RightControl, function()
     if not Unloaded then
