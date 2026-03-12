@@ -1,22 +1,8 @@
--- Task Manager
-local RunningTasks = {}
-local Unloaded = false
-
-local function RunScript(url)
-    if Unloaded then return end
-
-    local thread = task.spawn(function()
-        if not Unloaded then
-            loadstring(game:HttpGet(url))()
-        end
-    end)
-
-    table.insert(RunningTasks, thread)
-end
-
 -- UI Library
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("val", "DarkTheme")
+
+Library:ToggleUI()
 
 -- MAIN TAB
 local Main = Window:NewTab("val")
@@ -53,30 +39,4 @@ SettingsSection:NewKeybind("Toggle", "Toggles the Gui", Enum.KeyCode.RightContro
     if not Unloaded then
         Library:ToggleUI()
     end
-end)
-
-SettingsSection:NewButton("Unload Script", "Stops everything and closes the UI", function()
-
-    Unloaded = true
-
-    -- Cancel running tasks
-    for _,thread in pairs(RunningTasks) do
-        pcall(function()
-            task.cancel(thread)
-        end)
-    end
-
-    -- Destroy GUI
-    for _,v in pairs(game.CoreGui:GetChildren()) do
-        if v.Name == "val" then
-            v:Destroy()
-        end
-    end
-
-    game.StarterGui:SetCore("SendNotification", {
-        Title = "val";
-        Text = "Script Unloaded";
-        Duration = 0.5;
-    })
-
 end)
