@@ -9,26 +9,26 @@ local Main = Window:NewTab("val")
 local MainSection = Main:NewSection("FPS vlx")
 
 MainSection:NewButton("LegitBot", "Legit Aimbot", function()
-    RunScript("https://raw.githubusercontent.com/n-xz/LegitBot/refs/heads/main/LegitBot")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/LegitBot/refs/heads/main/LegitBot")
 end)
 
 MainSection:NewButton("BlatantBot", "Blatant Aimbot", function()
-    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/BlatantBot")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/BlatantBot")
 end)
 
 -- UNIVERSAL SECTION
 local valSection = Main:NewSection("vlx")
 
 valSection:NewButton("TCESP", "Team Check Esp", function()
-    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/TCESP")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/TCESP")
 end)
 
 valSection:NewButton("RevampedHBE", "A Revamp of an HBE script", function()
-    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/RevampedHBE")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/RevampedHBE")
 end)
 
 valSection:NewButton("LegitHBE", "A Legit Revamp of an HBE script", function()
-    RunScript("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/LegitHBE")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/n-xz/.../refs/heads/main/LegitHBE")
 end)
 
 -- UI TAB
